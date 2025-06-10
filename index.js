@@ -9,7 +9,11 @@ const app = express();
 const port = 3000;
 
 const root = function (req, res) {
-    res.send("Hello World! Welcome to my Express server.");
+    //send index.html
+    res.sendFile(__dirname + '/index.html');
+    //__dirname is a global variable that gives the current directory of the file
+    //res.sendFile is a method that sends a file as a response
+    
 }
 
 
@@ -26,7 +30,7 @@ app.get('/about', (req, res) => {
     res.send("This is the about route.");
 })
 
-app.post("/post", (req, res)=>{
+app.get("/post", (req, res)=>{
     res.send("This is a POST request to the /post route.");
 })
 // req-> methods, data, headers, etc
@@ -57,13 +61,23 @@ app.get('/profile/:username', (req, res)=>{
 })
 
 
+//product route 
+//localhost:3000/product/:productName
+
+
+
 
 //Query Parameters 
 //searching for something 
 app.get("/search", (req, res)=>{
     const query = req.query.q; //q is the query parameter
-    res.send(`You searched for: ${query}`);
+    const sort = req.query.sort; //sort is the query parameter
+    const limit = req.query.limit; //limit is the query parameter
+    res.send(`You searched for: ${query}, sorted by: ${sort}, with a limit of: ${limit}.`);
 })
+
+//localhost:3000/search?q=react&sort=asc&limit=10
+
 
 
 

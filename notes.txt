@@ -60,3 +60,8 @@ Nodemon
 tool -> Ctrl + S -> restarts the server automatically
 
 npm install nodemon
+
+
+Middlewares 
+
+https://expressjs.com/en/guide/using-middleware.html
