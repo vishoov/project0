@@ -1,0 +1,62 @@
+NODE.JS 
+
+a javascript runtime, that helps us execute and implement backend server development code in the MERN stack
+
+how to setup a node project?
+
+1. open temrinal in your project folder
+2. npm init -y -> node package manager -> initialise 
+3. -y -> yes to all default settings 
+
+
+a. node package manager -> activate 
+    -> express -> dependancy 
+    -> mongodb -> dependancy 
+
+b. manages our project 
+
+main -> endpoint file 
+
+server setup -> 24x7 -> efficient -> scalable 
+
+deploy or live 
+
+endpoint file -> server on live 
+
+scripts -> this key in package.json helps us in writing custom scripts for our server 
+
+2. custom script -> dev > node index.js
+
+3. terminal npm run dev 
+
+EXPRESS.JS
+
+is a library that helps in writing robust and scalable routes for backend server projects
+security 
+easy to implement 
+
+-> request and response -> objects 
+
+npm install express
+
+Express is used for routing 
+
+restful api
+
+/profile
+/search
+/changepassword
+
+
+
+api call -> client -> request -> server -> database -> response  
+
+cross origin resource sharing 
+server protect 
+
+
+Nodemon
+
+tool -> Ctrl + S -> restarts the server automatically
+
+npm install nodemon
