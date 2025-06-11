@@ -1,0 +1,31 @@
+MIDDLEWARES 
+authentication, security, monitoring, file support
+
+middleware is a function that gets executed AFTER the server recieved a request and BEFORE a response is sent back in a route 
+
+
+Types of Middlewares 
+
+1. pre defined middleware -> express.json(), jsonwebtoken, mongoose, socket.io webRTC, CORS 
+2. custom middlewares -> monitoring, custom security infra, AI, RTC
+
+Logging Middleware 
+
+
+How to implement middlewares 
+
+1. app.use(middleware function) -> after this code all the routes will be implemented after this middleware 
+2. app.method("/route", middleware, handlerFunction)
+
+
+//user management 
+
+signup -> post -> /signup /register -> user data databse save 
+login -> post 
+change password put
+logout get
+
+
+
+
+//database 
