@@ -29,3 +29,10 @@ logout get
 
 
 //database 
+
+types of db 
+https://www.mongodb.com/resources/basics/databases/types 
+
+
+mongodb
+

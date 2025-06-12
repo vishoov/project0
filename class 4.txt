@@ -1,0 +1,129 @@
+
+
+whenever we implement the server 
+
+it executes the index.js file 
+
+
+instances of it are created 
+
+//user 1 -> index.js
+//user 2-> index.js
+..
+.
+.
+.
+.
+//user 4 
+
+
+
+if we put a lot of code in our index.js file
+it would CROWD the endpoint
+and whenever we are using it, even if we want to execute only one route
+ALL THE OTHER ROUTES will be called, even if they are not being used 
+
+MVC Architecture 
+
+Model View Controller Architecture 
+
+we organise our project in such a way
+where we group 
+all the 
+model code
+view code
+and controller code together in seperate folders respectively 
+
+CODE ON DEMAND! 
+
+
+
+
+DATABASES 
+
+
+relational database -> SQL 
+non - relational -> No-SQL, mongodb
+
+documents 
+JS objects -> 
+{
+    name:"Acciojob",
+    age:4,
+    address:"India",
+    phone:95847383
+}
+
+
+
+
+structure 
+
+
+relational DBs -> tables 
+user information -> 
+user info -> userid, name, age, phone, address
+user1       396496  Vishoo  25   09370707 fogoh
+user2
+user3
+user4
+
+relational DBs -> the schema is fixed
+
+created a database 
+user information 
+email password -> not possible to add these values once the table is created 
+
+name, age, phone, address, gender 
+1
+2
+3
+4
+5
+6
+
+
+SQL or relational 
+are RIGID and not flexible 
+
+
+non relational + 
+DATA MODELLING 
+
+name
+age -> age > 18 and less than 100
+password -> 10 < 20 
+email
+address
+role -> user, admin, super admin 
+
+
+cluster  -> physical location where your data will be stored 
+
+databases -> collection of data where you can store, read, update, delete different information for your product
+
+collections -> tables but not tables -> contain data of similar category 
+user data -> user 
+product data -> product
+social media post -> post 
+
+documents -> single data entity -> { name: "abc", age:20, email:"og@gmail.com }
+
+
+
+
+
+
+Mongoose 
+
+ODM software -> Object Data Modelling 
+this helps us in connecting to the database
+this helps us in defining a schema for our data 
+
+Schema refers to a blueprint 
+
+
+ALWAYS PREFER DEVELOPING IN LOCAL HOST FIRST THEN DEPLOY YOUR APPLICATIONS 
+
+
+https://www.mongodb.com/docs/manual/crud/
