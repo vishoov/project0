@@ -45,3 +45,17 @@ https://mongoosejs.com/docs/queries.html
 
 Always use asynchronous code while writing ROUTES
 always use Error Handling 
+
+
+you can create your own server
+
+
+Blog Api
+
+title, description, author
+
+
+get Blog
+get all blogs
+create a blog
+delete a blog 
