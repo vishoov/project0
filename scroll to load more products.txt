@@ -1,0 +1,63 @@
+  <script>
+    // API config
+    const API_URL = 'https://dummyjson.com/products';
+    const LIMIT = 8;
+
+    // State
+    let skip = 0;
+    let loading = false;
+    let hasMore = true;
+
+    const productsDiv = document.getElementById('products');
+    const loadingDiv = document.getElementById('loading');
+    const endMessageDiv = document.getElementById('end-message');
+
+    // Fetch and display products
+    async function loadProducts() {
+      if (loading || !hasMore) return;
+      loading = true;
+      loadingDiv.style.display = 'block';
+
+      try {
+        const res = await fetch(`${API_URL}?limit=${LIMIT}&skip=${skip}`);
+        const data = await res.json();
+
+        data.products.forEach(product => {
+          const div = document.createElement('div');
+          div.className = 'product';
+          div.innerHTML = `
+            <img src="${product.thumbnail}" alt="">
+            <div class="product-info">
+              <div class="product-title">${product.title}</div>
+              <div class="product-price">$${product.price}</div>
+              <div class="product-desc">${product.description.substring(0, 40)}...</div>
+            </div>
+          `;
+          productsDiv.appendChild(div);
+        });
+
+        skip += data.products.length;
+        if (skip >= data.total) {
+          hasMore = false;
+          endMessageDiv.style.display = 'block';
+        }
+      } catch (err) {
+        alert('Failed to load products!');
+      } finally {
+        loading = false;
+        loadingDiv.style.display = 'none';
+      }
+    }
+
+    // Infinite scroll logic
+    window.addEventListener('scroll', () => {
+      if (!hasMore || loading) return;
+      const scrollBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 50;
+      if (scrollBottom) {
+        loadProducts();
+      }
+    });
+
+    // Initial load
+    loadProducts();
+  </script>
