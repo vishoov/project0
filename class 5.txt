@@ -1,0 +1,47 @@
+Data Validation and Error Handling
+
+
+social media app 
+
+
+name,
+age,
+email,
+phone number 
+
+
+reach out to the user 
+
+
+phone number -> 98987698799
+
+
+Non relational database
+
+
+Data Validation 
+
+
+rules and constraints 
+
+
+route 
+
+req -> get all users -> query -> mongoose to fetch the data 
+
+
+route -> mongoose -> database 
+
+Every piece of data the we want to store in our database PASSES THROUGH DATA Validation
+
+
+signup -> { name, age, email, phone, address } -> mongoose 
+
+
+https://mongoosejs.com/docs/schematypes.html
+
+https://mongoosejs.com/docs/queries.html
+
+
+Always use asynchronous code while writing ROUTES
+always use Error Handling 

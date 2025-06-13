@@ -7,6 +7,8 @@ const userRoutes = require('./view/routes.view'); // Importing user routes
 app.use(express.json()); // Middleware to parse JSON bodies
 const mongoose = require('mongoose');
 
+
+//Uniform Resource Identifier
 // Connect to MongoDB
 mongoose.connect("mongodb+srv://vverma971:quaMPyDiE1usE2Nm@cluster0.dczxav0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 .then(()=>{

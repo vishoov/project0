@@ -110,7 +110,10 @@ social media post -> post
 documents -> single data entity -> { name: "abc", age:20, email:"og@gmail.com }
 
 
-
+How to setup an online database using mongodb
+- Atlas  -> online deployment 
+- Compass -> software for managing and interacting with your databases
+- MongoShell -> command line interface for mongodb 
 
 
 
