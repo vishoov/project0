@@ -1,0 +1,144 @@
+Aggregation and Pipelines
+
+Advanced Queries 
+
+User.find() -> conditions 
+name:this
+age: 
+
+
+name : abc and age : 20
+
+
+age : greater than 20 
+
+
+query in a way that we want  
+
+2nd. insights gathering 
+
+route -> age wise group users 
+
+0-10 years -> 
+10-20 years
+20-30 
+30-40
+40-50 -> 
+50-60 -> 
+
+
+joint pain -> medicine 
+
+
+
+2024 -> 
+AC sales 
+
+january -> 100
+feb - 90
+march -> 500
+april - 1000
+may, jun, july -> 10000 
+aug -> 700
+
+-> ac stock ^^ 
+
+
+pagination 
+
+efficient -> all users -> 1million 
+
+pagination -> 100-100 
+
+
+users 
+
+
+ 
+
+  1. I want to count the total number of users
+  2. I want to count users per country  
+  3. get average age of users 
+        -> users active -> averageAge -> return 
+  4. monthly user registrations
+        -> per month how many users are SIGNing UP -> 
+
+
+
+
+        QUERYING
+
+        CRUD -> Create, read, update, delete 
+
+        Read -> 
+
+            User.find({
+                conditions 
+            })
+
+
+            types of queries 
+
+            1. value queries 
+
+                User.find({
+                    name:"Acciojob"
+                })
+
+            2. Comparison operators 
+                greater than users with age greater than 10 years
+
+                    User.find({
+                        age : {
+                            $gt : 10 
+                        }
+                    })
+
+                lesser than -> $lt
+                greater than or equal to -> $gte
+                less than equal to -> $lte 
+                not equal to : $ne
+
+            3. Logical Operators 
+
+                    AND, OR, NOT 
+
+                    both conditions true -> AND -> true 
+
+                    $and : [
+                        { name : Vishoo },
+                        { age: 30 }
+                    ] 
+
+                    which follows BOTH the conditions 
+
+
+
+                    $or -> only one should be true 
+
+                    $nor -> should not be true 
+
+
+ username: { type: String, required: true, unique: true, lowercase: true },
+  email: { type: String, required: true, unique: true, lowercase: true },
+  age: { type: Number, required: true },
+  country: { type: String, required: true },
+  roles: [{ type: String, enum: ['user', 'admin', 'moderator'] }],
+  isActive: { type: Boolean, default: true },
+  createdAt: { type: Date, default: Date.now }
+
+
+  1. write a query to find users within the age range 20-40 
+
+    const users = Await User.find({
+        //write query here 
+
+
+    })
+
+2. active adult users from india
+
+active -> isActive
+age -> 18 
+country->  India 
+

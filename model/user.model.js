@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     email:{
         type:String,
         required:true,
-        unique:true, //this will ensure that the email is unique across all documents in the collection
+    //unique:true //this will ensure that the email is unique across all documents in the collection
         // this will ensure that the email is in a valid format
         validate:{
             validator: function(v){
@@ -58,7 +58,13 @@ const userSchema = new mongoose.Schema({
         type:String,
         enum: ['user', 'admin', 'seller', 'superadmin'], //this will ensure that the role is one of the specified values
         default: 'user' //this will set the default role to 'user' if no role is provided
-    }
+    },
+    
+  
+  country: { type: String, required: false },
+  
+  isActive: { type: Boolean, default: true },
+  createdAt: { type: Date, default: Date.now }
 }, 
 {
     timestamps: true //this will automatically add createdAt and updatedAt fields to the schema
