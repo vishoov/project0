@@ -1,0 +1,37 @@
+air conditionors 
+
+
+-> summers -> 
+
+amazon seller -> high stock of ac in summer 
+
+
+travel agency 
+-> manali -> june july 
+-> goa -> spring or winters 
+
+
+//aggregation pipelines 
+
+User Growth Trends
+demographic analysis 
+role based access
+dashboards 
+
+What is aggregation pipeline?
+Aggregation pipelines are a powerful feature in MongoDB that allow you to process, transform, and analyze data directly within the database. They are modeled after data processing pipelines, where documents flow through a series of stages, each performing a specific operation on the data
+
+An aggregation pipeline consists of an sequence of stages where each stage takes in documents as input, processes them and analyses them and passes the output to the next stage 
+
+
+Stage               Use
+
+match           match -> age:20 
+group           groups documents by a specified key 
+project         how do we want to display the data 
+sort            ascending  or descending 
+limit           10000000-> query -> 100 output so that my api is lightweight 
+unwind          if we an array -> documents 
+out             if we want to save the output of the aggregation pipeline to            a               different collection
+skip            to skip a few starting documents 
+

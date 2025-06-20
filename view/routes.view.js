@@ -351,4 +351,237 @@ router.get("/averageage", async (req, res)=>{
   }
 })
 
+
+router.get("/activeusers", async (req, res)=>{
+  try{
+    const activeUsers = await User.aggregate([
+      {
+        $match:{
+          isActive: true // Match only active users
+        }
+      }
+    ])
+
+    if(activeUsers.length === 0){
+      return res.status(404).send("No active users found.");
+    }
+
+    res.status(200).json({
+      message: "Active users fetched successfully",
+      activeUsers: activeUsers
+    });
+  }
+  catch(err){
+    console.error("Error fetching active users:", err);
+  }
+})
+
+//get users in india that are older than 18
+router.get("/usersinindia", async (req, res)=>{
+    try{
+        const usersInIndia = await User.aggregate([
+          
+          
+           {
+            $match:{
+              country:"India", 
+              age: { $gt: 18 }, // Match users older than 18,
+              isActive: true, // Ensure users are active
+              email: { $exists: true } // Ensure email exists and is not empty
+            }
+          }
+          
+          
+        ])
+
+        res.status(200).json({
+          message: "Users in India older than 18 fetched successfully",
+          users: usersInIndia
+        })
+    }
+    catch(err){
+      console.error("Error fetching users in India:", err);
+      res.status(500).json({
+        message: "An error occurred while fetching users in India.",
+        error: err.message
+      });
+    }
+  
+})
+
+//get the count of users in each country
+//india -> 2 
+//USA -> 4
+//UK  -> 3
+
+//group the data based on country 
+//india -> 
+//USA ->
+//UK ->
+
+//then we count the number of users in each country
+
+router.get("/usercountbycountry", async (req, res)=>{
+  try{
+    const userCountByCountry = await User.aggregate([
+      {
+        $group:{
+          _id: "$country", // Group by country
+          count:{
+            $sum:1 // Count the number of users in each country
+            //operations -> $sum, $avg, $min, $max, $push, $addToSet, $first, $last, $count  
+            //Truthy-> 1
+            // Falsy -> 0
+          }
+        }
+      },{
+        $project:{
+          country: "$_id", // Rename _id to country
+          _id:0,
+          count: 1 // Include the count field
+        }
+      },
+      {
+        $sort:{
+          count:-1
+
+          //sort:-1 // Sort by count in descending order
+          //sort:1 // Sort by count in ascending order
+        }
+      },{
+        $limit: 10 // Limit the results to the top 2 countries by user count
+      },{
+        $skip:1
+      }
+    ])
+
+    res.status(200).json({
+      message: "User count by country fetched successfully",
+      userCount: userCountByCountry
+    });
+    
+  }
+  catch(err){
+    console.error("Error fetching user count by country:", err);
+    res.status(500).json({
+      message: "An error occurred while fetching user count by country.",
+      error: err.message
+    });
+  }
+})
+
+
+//get the count of Active and Inactive users
+//Active Users -> 5
+//Inactive Users -> 3
+
+router.get("/usercountbystatus", async (req, res)=>{
+  try{
+    const userCountByCountry = await User.aggregate([
+      {
+        $group:{
+          _id: "$isActive", // Group by country
+          count:{
+            $sum:1 // Count the number of users in each country
+            //operations -> $sum, $avg, $min, $max, $push, $addToSet, $first, $last, $count  
+            //Truthy-> 1
+            // Falsy -> 0
+          }
+        }
+      }
+    ])
+
+    res.status(200).json({
+      message: "User count by country fetched successfully",
+      userCount: userCountByCountry
+    });
+    
+  }
+  catch(err){
+    console.error("Error fetching user count by country:", err);
+    res.status(500).json({
+      message: "An error occurred while fetching user count by country.",
+      error: err.message
+    });
+  }
+})
+
+//group the data based on  roles 
+//admin -> 2
+//user -> 4
+//superadmin -> 3
+router.get("/usercountbyrole", async (req, res)=>{
+  try{
+    const userCountByRole = await User.aggregate([
+      {
+        $group:{
+          _id: "$role", // Group by role
+          count:{
+            $sum:1 // Count the number of users in each role
+            //operations -> $sum, $avg, $min, $max, $push, $addToSet, $first, $last, $count
+          }
+        }
+      },
+      {
+        $project:{
+          role: "$_id", // Rename _id to role
+          _id: 0, // Exclude _id from the output
+          count: 1 // Include the count field
+        }
+      }
+    ])
+
+    res.status(200).json({
+      message: "User count by role fetched successfully",
+      userCount: userCountByRole
+    });
+  }
+  catch(err){
+    console.error("Error fetching user count by role:", err);
+    res.status(500).json({
+      message: "An error occurred while fetching user count by role.",
+      error: err.message
+    });
+  }
+});
+
+
+router.get("/usercountbyage", async(req, res)=>{
+  try{
+    const userCount = await User.aggregate([
+      {
+        $group: {
+          _id: "$age", // Group by age
+          count: { $sum: 1 } // Count the number of users for each age
+
+      }
+    },
+    {
+      $project: {
+        age: "$_id", // Rename _id to age
+
+        _id: 0, // Exclude _id from the output
+        count: 1 // Include the count field
+      }
+    }
+    ])
+
+    res.status(200).json({
+      message: "User count by age fetched successfully",
+      userCount: userCount
+    });
+  }
+  catch(err){
+    console.error("Error fetching user count by age:", err);
+    res.status(500).json({
+      message: "An error occurred while fetching user count by age.",
+      error: err.message
+    });
+  }
+})
+// role- id
+//count - number of users in that roles
+//project-> role, count 
+
+
 module.exports = router;
