@@ -1,0 +1,78 @@
+web RTC vs HTTP
+
+1. Latency and Real Time Compatability 
+
+    HTTP methods are for general communication 
+    WebRTC -> ultra low latency features -> video conference, live gaming, chatting
+
+
+    Latency is the time required for data to travel from a client to the server 
+
+
+2. Communication Model 
+
+    HTTP -> every data even though if youre recieving it or sending it, it will have to go through the server 
+            client-Server
+    WebRTC -> peer-to-peer communication -> whatever data is involved it is directly sent to the reciever which helps in saving server load 
+
+3. HTTP is more scalable 
+4. HTTP is more reliable 
+
+5. WebRTC is BiDirectional 
+
+
+Building a chat application 
+
+that will have a very good front End and a backend for letting the communication go 
+
+
+WebSockets -> it is networking protocol, that provides full duplex, bidirectional communication over a single persistent TCP connection between a client and a server 
+
+-application layer 
+-presentation layer 
+-session layer 
+-Transport layer  **
+-network layer
+-data link layer 
+-physical layer 
+
+
+if i am implementing Real Time Communication -> sacrifice the security part 
+//httpsServer -> security protocal http communication 
+
+
+
+socket.io -> it is a package for node js that helps us in implementing webSockets 
+
+
+
+event based communication 
+
+
+sendmessage
+
+sender      server       reciever 
+-------------> id -------------->
+
+1. emit -> you send something  
+2. on -> you recieve that 
+
+I want to send a message to our zoom class 
+
+socket.emit("event-name",
+{
+    reciever:"id"
+    message:"hello everyone"
+    } 
+)
+
+
+socket.on("event-name", function(){
+    here is how you can recieve the data 
+})
+
+
+
+
+forwardmessage
+recievemessage
