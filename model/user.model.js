@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const bcrypt = require('bcrypt'); // Importing bcrypt for password hashing
 //mongoose.schema -> this is a method of mongoose that is used to create a schema for a collection in the database
 // A schema defines the structure of the documents within a collection, including the fields and their types.
 const userSchema = new mongoose.Schema({
@@ -69,6 +69,48 @@ const userSchema = new mongoose.Schema({
 {
     timestamps: true //this will automatically add createdAt and updatedAt fields to the schema
 });
+
+
+userSchema.pre('save', function(next){
+    try{
+        //implement bcrypt 
+        //that will hash the password before saving the user document
+
+
+        //hash the password 
+
+        const user = this; // 'this' refers to the current document being saved
+
+        //bcrypt 
+        //password , salt 
+        const salt = bcrypt.genSaltSync(10); // Generate a salt with 10 rounds
+
+        const encryptedPassword = bcrypt.hashSync(
+            user.password, // The password to hash
+            salt // The generated salt
+        );
+
+        // Set the hashed password back to the user document
+        user.password = encryptedPassword;
+        // Call next() to proceed with the save operation
+        next();
+         
+    }
+    catch(err){
+        console.error("Error during pre-save middleware:", err);
+        next(err); // Pass the error to the next middleware
+    }
+})
+// this is a middleware function that will be executed before some event 
+//we write save event before which we want to execute this function
+
+userSchema.methods.comparePassword = function(candidatePassword){
+    // This method will be used to compare the candidate password with the hashed password stored in the database
+    return bcrypt.compareSync(candidatePassword, this.password);
+    // candidatePassword is the password that the user is trying to log in with
+    // this.password is the hashed password stored in the database
+    // bcrypt.compareSync will return true if the passwords match, false otherwise
+}
 
 
 //user management api

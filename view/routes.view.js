@@ -3,9 +3,9 @@
 const router = require('express').Router();
 const { home, signup } = require('../controller/controller');
 const User = require('../model/user.model'); // Importing the User model
+const { createToken, authenticate } = require('../middlewares/auth.middleware'); // Importing the createToken function for JWT
 
-
-router.get("/", home)
+router.get("/", authenticate, home)
 
 // signup -> post -> /signup /register -> user data databse save
 router.post("/signup", signup);
@@ -24,15 +24,23 @@ try{
     return res.status(404).send("User not found. Please sign up first.");
   }
 
+  //compare the password
+  const isPasswordValid = user.comparePassword(password);
+
   //if user is found, we check if the password matches
-  if(user.password !== password){
+  if(!isPasswordValid){
     return res.status(401).send("Incorrect password. Please try again.");
   }
+
+  const token = createToken(user); // Create a JWT token for the user
+
+
 
   //if password matches, we return a success message
   res.status(200).json({
     message: "Login successful",
-    user:user
+    user:user,
+    token: token // Return the JWT token
   })
 }
 catch(err){

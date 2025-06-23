@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 const userRoutes = require('./view/routes.view'); // Importing user routes
-
+const rateLimit = require('express-rate-limit'); // Importing rate limiting middleware
 app.use(express.json()); // Middleware to parse JSON bodies
 const mongoose = require('mongoose');
 
@@ -36,6 +36,14 @@ const middleware= (req, res, next)=>{
     
     //return value 
 }
+
+
+//write the Rate Limiting Middleware
+
+
+
+
+
 //universal middleware
 //this middleware will be called for every request made to the server in the routes that are defined after this middleware
 app.use(middleware);

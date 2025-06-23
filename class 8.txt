@@ -1,0 +1,134 @@
+SECURITY 
+
+Data is important to users because sensitive information, keys, bank details, personal data is important
+
+//Different Layers of Security 
+
+database leak 
+
+
+//Password Encryption
+
+
+name, email, password, age, gender 
+
+just before saving 
+bcrypt 
+password -> encrypt 
+
+ilovemangoes -> 4p89y4pohf[h[i04y/.nrlh[9ehofb;g49[y[98ghfpkb;fb]]]]]
+
+just before saving the user information in the database 
+update password 
+change password 
+
+
+password + secret key (salt string)    ===== Algorithm ======> Encrypted Password    
+            this only we know 
+
+
+bcrypt 
+
+
+password decrypt -> trial error -> 16 years! to decrypt one normal string 
+
+bcrypt 
+
+
+
+
+//API authentication
+
+remembering your devices 
+
+session save 
+
+youtube ----------> login 
+
+api authentication 
+JWT json web token 
+
+//store the sessions 
+
+history 
+
+authentication
+email pass 
+session id create 
+scalability 
+
+
+
+
+
+RESTful 
+STATELESS 
+
+
+
+
+routes 
+- Public -> which anyone cass access signup page, login page, home page 
+- Protected -> wherever sensitive information is being sent or recieved 
+
+
+
+
+
+
+
+
+// Password authentication 
+
+
+
+
+
+Hackers trying some attacks on our product
+//DoS Attack -> Denial of Service 
+
+server working -> 10000 
+
+one hacker comes-> bots -> fake requests -> 49630
+
+server will be overwhelmed 
+
+
+
+
+Rate Limiting 
+
+your server restricts number of requests recieved by the server in a small window of time
+
+express-rate-limiter 
+
+
+
+
+
+//Server Protection 
+
+amazon server -> amazon front end 
+
+any request coming from any IP address except for the trusted one, it will be rejected 
+
+
+CORS -> Cross ORigin Resource Sharing 
+
+
+
+
+
+//Evironment Variables 
+
+hide the secret keys, api keys, port numbers, development related data 
+
+
+.env -> API_KEY, URI, secret key 
+
+
+//input sanitisation
+
+
+
+//XSS prevention 
