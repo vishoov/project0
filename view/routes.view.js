@@ -4,7 +4,7 @@ const router = require('express').Router();
 const { home, signup } = require('../controller/controller');
 const User = require('../model/user.model'); // Importing the User model
 const { createToken, authenticate } = require('../middlewares/auth.middleware'); // Importing the createToken function for JWT
-
+const xss = require('xss'); // Importing xss for sanitizing input
 router.get("/", authenticate, home)
 
 // signup -> post -> /signup /register -> user data databse save
@@ -14,6 +14,19 @@ router.post("/signup", signup);
 router.post('/login', async (req, res)=>{
 try{
   const {email, password} = req.body;
+
+
+  //sanitize the input to prevent XSS attacks
+  email = xss(email);
+  password = xss(password);
+
+
+  //xss -> cross site scripting
+  //xss -> is a type of attack where the attacker injects malicious scripts into a web page
+  //this xss(input) function will sanitize the input by removing any malicious scripts
+  
+
+  //email -> script that will try to steal the data 
 
   //we find the user by email
   const user = await User.findOne({ email:email });
@@ -57,6 +70,12 @@ catch(err){
 router.put('/changepassword', async (req, res)=>{
 
   const {email, oldpassword, newpassword} = req.body;
+
+
+  //this process is called input sanitization 
+  email = xss(email);
+  oldpassword = xss(oldpassword);
+  newpassword = xss(newpassword);
 
   const user = await User.findOneAndUpdate({
     email:email,

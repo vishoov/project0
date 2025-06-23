@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 
-const JWT_SECRET= "Hellothisismysecretkey"; // secret key for JWT, should be stored in environment variables in production
+const JWT_SECRET= process.env.JWT || 'Hellothisismysecretkey' // secret key for JWT, should be stored in environment variables in production
 
 //jwt authentication 
 

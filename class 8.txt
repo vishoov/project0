@@ -100,7 +100,7 @@ Rate Limiting
 
 your server restricts number of requests recieved by the server in a small window of time
 
-express-rate-limiter 
+express-rate-limit
 
 
 
@@ -115,7 +115,11 @@ any request coming from any IP address except for the trusted one, it will be re
 
 CORS -> Cross ORigin Resource Sharing 
 
+only those IP address that I have whitelisted can send a request to my server 
 
+instal CORS -> Cross Origin Resource Sharing 
+
+npm i cors
 
 
 
@@ -127,8 +131,21 @@ hide the secret keys, api keys, port numbers, development related data
 .env -> API_KEY, URI, secret key 
 
 
+npm i dotenv
+
+
+
+
 //input sanitisation
-
-
-
 //XSS prevention 
+
+
+XSS-> cross site scripting 
+
+hacker-> request -> GET -> 
+
+body -> {
+    try to extract the data from the db, and will try to redirect it to his own server 
+}
+
+
